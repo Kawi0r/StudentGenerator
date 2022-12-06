@@ -6,20 +6,16 @@ import java.util.Random;
 import java.util.Scanner;
 
 public class StudentGenerator {
-    private static int random10() {
+    private static int random(int num) {
         Random random = new Random();
-        return random.nextInt(10);
+        return random.nextInt(num);
     }
 
-    private static int random20() {
+    private static int random(int num1, int num2) {
         Random random = new Random();
-        return random.nextInt(20);
+        return random.nextInt(num1, num2);
     }
 
-    private static int random2() {
-        Random random = new Random();
-        return random.nextInt(2);
-    }
 
     public static String[] convertingFileToArray(String file) throws FileNotFoundException {
 
@@ -46,7 +42,7 @@ public class StudentGenerator {
         return array;
     }
 
-    private static char settingGender(int num) {
+    public static char settingGender(int num) {
         if (num == 0) {
             return 'F';
         } else if (num == 1) {
@@ -56,9 +52,9 @@ public class StudentGenerator {
         }
     }
 
-    private static String settingName(char gender, String[] maleNames, String[] femaleNames, String[] surname) {
-        int random10 = random10();
-        int random20 = random20();
+    public static String settingName(char gender, String[] maleNames, String[] femaleNames, String[] surname) {
+        int random10 = random(10);
+        int random20 = random(20);
 
         // depend on what gender will be rolled, this type of name will be used
         if (gender == 'M') {
@@ -70,6 +66,26 @@ public class StudentGenerator {
         }
     }
 
+    public static String settingDateOfBirth() {
+        int day = random(31) + 1;
+        String sDay;
+        if (day < 10) {
+            sDay = "0" + day;
+        } else {
+            sDay = String.valueOf(day);
+        }
+        int month = random(12) + 1;
+        String sMonth;
+        if (month < 10) {
+            sMonth = "0" + month;
+        } else {
+            sMonth = String.valueOf(month);
+        }
+        int year = random(101) + 1900;
+        return sDay + "/" + sMonth + "/" + year;
+    }
 
-
+    public static int settingStudentID() {
+        return random(1000001, 10000000);
+    }
 }

@@ -15,9 +15,18 @@ public class GeneratorMain {
             String surnamePath = "TextFiles/surnames.txt";
             surnamesArray = StudentGenerator.convertingFileToArray(surnamePath);
 
+            char gender = StudentGenerator.settingGender(1);
+            System.out.println(StudentGenerator.settingName(
+                    gender,
+                    maleNamesArray,
+                    femaleNamesArray,
+                    surnamesArray
+            ));
         } catch (FileNotFoundException e) {
             throw new RuntimeException(e);
         }
-
+        System.out.println(StudentGenerator.settingDateOfBirth());
+        System.out.println(StudentGenerator.settingStudentID());
     }
+
 }
